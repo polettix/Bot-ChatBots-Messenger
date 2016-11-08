@@ -32,6 +32,7 @@
       "develop" : {
          "requires" : {
             "Dist::Milla" : "v1.0.15",
+            "Mojolicious" : "7.10",
             "Path::Tiny" : "0.096",
             "Template::Perlish" : "1.52",
             "Test::Pod" : "1.41"
@@ -39,7 +40,8 @@
       },
       "runtime" : {
          "requires" : {
-            "Bot::ChatBots" : "0.001002",
+            "Bot::ChatBots" : "0.001003",
+            "namespace::clean" : "0.27",
             "perl" : "5.010"
          }
       },

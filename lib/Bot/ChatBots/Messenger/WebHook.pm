@@ -12,13 +12,56 @@ use namespace::clean;
 
 with 'Bot::ChatBots::Role::WebHook';
 
+has no_routes => (
+   is      => 'ro',
+   default => sub { return 0 },
+);
+
+has verify_token => (
+   is      => 'ro',
+   lazy    => 1,
+   default => sub { ouch 500, 'you MUST set verify_token by yourself' },
+);
+
+sub BUILD {
+   my $self = shift;
+   if (!$self->no_routes) {
+      $self->install_route;        # the main POST one
+      $self->install_get_route;    # the FB back-authentication route
+   }
+} ## end sub BUILD
+
+sub install_get_route {
+   my $self = shift;
+   my $args = (@_ && ref($_[0])) ? $_[0] : {@_};
+   my $r    = $args->{routes} // $self->app->routes;
+   my $p    = $args->{path} // $self->path;
+   return $r->get(
+      $p => sub {
+         my $c = shift;
+         my $qp = $c->req->query_params;
+         if (  ($qp->param('hub.mode') eq 'subscribe')
+            && ($qp->param('hub.verify_token') eq $self->verify_secret))
+         {
+            $log->info('received correct challenge request');
+            $c->render(text => $qp->param('hub.challenge'));
+         } ## end if (($qp->param('hub.mode'...)))
+         else {
+            $log->error('GET request not accepted');
+            $c->rendered(403);
+         }
+         return;
+      }
+   );
+} ## end sub install_get_route
+
 sub normalize_record {
    my ($self, $record) = @_;
    my $update = $record->{update} or ouch 500, 'no update found!';
 
    $record->{source}{technology} = 'messenger';
 
-   $record->{type} = 'message';
+   $record->{type}    = 'message';
    $record->{payload} = $record->{update}{message};
 
    $record->{sender} = $record->{update}{sender};
@@ -27,7 +70,7 @@ sub normalize_record {
    $chan->{fqid} = $chan->{id};
 
    return $record;
-}
+} ## end sub normalize_record
 
 sub parse_request {
    my ($self, $req) = @_;
@@ -41,7 +84,7 @@ sub parse_request {
       my $page_id    = $entry->{id};
       my $event_time = $entry->{time};
 
-      EVENT:
+    EVENT:
       for my $event (@{$entry->{messaging}}) {
          if (exists $event->{message}) {
             push @updates, $event;
@@ -49,7 +92,7 @@ sub parse_request {
          else {
             $log->warn('unknown event: ' . Dumper($event));
          }
-      } ## end for my $event (@{$entry...})
+      } ## end EVENT: for my $event (@{$entry...})
    } ## end for my $entry (@{$data->...})
 
    return @updates;
