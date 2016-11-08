@@ -1,4 +1,6 @@
-requires 'perl', '5.010';
+requires 'perl',             '5.010';
+requires 'Bot::ChatBots',    '0.001003';
+requires 'namespace::clean', '0.27';
 
 on test => sub {
    requires 'Test::More', '0.88';
@@ -8,4 +10,5 @@ on test => sub {
 on develop => sub {
    requires 'Path::Tiny',        '0.096';
    requires 'Template::Perlish', '1.52';
+   requires 'Mojolicious',       '7.10';
 };

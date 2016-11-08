@@ -12,22 +12,24 @@ This document describes Bot::ChatBots::Messenger version {{[ version ]}}.
 
 =head1 SYNOPSIS
 
-   use Bot::ChatBots::Messenger;
-
+   use Mojolicious::Lite;
+   plugin 'Bot::ChatBots::Messenger',
+      helper_name => 'messenger', # default is chatbots.messenger
+      instances => [
+         WebHook => [
+            # Bot::ChatBots::Messenger::WebHook-specific parameters...
+         ]
+      ];
+   app->start;
 
 =head1 DESCRIPTION
 
-This module allows you to...
-
-=head1 FUNCTIONS
-
-=head2 B<< whatever >>
-
-
+This module allows you to load a L<Mojolicious> plugin for dealing with
+Facebook Messenger webhooks for a chatbot.
 
 =head1 METHODS
 
-=head2 B<< whatever >>
+This module inherits from L<Bot::ChatBots::MojoPlugin> and adds nothing.
 
 
 =head1 BUGS AND LIMITATIONS
