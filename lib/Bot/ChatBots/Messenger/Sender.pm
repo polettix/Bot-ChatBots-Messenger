@@ -29,7 +29,7 @@ has _url => (
       my $self = shift;
       return Mojo::URL->new($self->url)
         ->query({access_token => $self->token});
-   };
+   },
 );
 
 sub normalize_message {
@@ -38,7 +38,7 @@ sub normalize_message {
    $message = {message => {text => $message}} unless ref $message;
 
    if (! exists $message->{recipient}) {
-      if (defined $record)) { # take from $record
+      if (defined $record) { # take from $record
          $message->{recipient} = {id => $record->{sender}{id}};
       }
       elsif ($self->has_recipient) {

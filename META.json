@@ -40,7 +40,7 @@
       },
       "runtime" : {
          "requires" : {
-            "Bot::ChatBots" : "0.001003",
+            "Bot::ChatBots" : "0.001008",
             "namespace::clean" : "0.27",
             "perl" : "5.010"
          }
