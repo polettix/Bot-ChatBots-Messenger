@@ -1,5 +1,6 @@
 .build/
 *.swp
 /local/
+/epan/
 /Bot-ChatBots-Messenger-*.tar.gz
 /Bot-ChatBots-Messenger-*/
