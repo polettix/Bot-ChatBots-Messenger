@@ -1,5 +1,5 @@
 requires 'perl',             '5.010';
-requires 'Bot::ChatBots',    '0.001003';
+requires 'Bot::ChatBots',    '0.001005';
 requires 'namespace::clean', '0.27';
 
 on test => sub {
