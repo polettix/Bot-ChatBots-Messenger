@@ -38,14 +38,14 @@ sub install_get_route {
    my $p    = $args->{path} // $self->path;
    return $r->get(
       $p => sub {
-         my $c = shift;
-         my $qp = $c->req->query_params;
-         if (  ($qp->param('hub.mode') eq 'subscribe')
-            && ($qp->param('hub.verify_token') eq $self->verify_secret))
-         {
+         my $c     = shift;
+         my $qp    = $c->req->query_params;
+         my $hmode = $qp->param('hub.mode') // '';
+         my $hvt   = $qp->param('hub.verify_token') // '';
+         if (($hmode eq 'subscribe') && ($hvt eq $self->verify_token)) {
             $log->info('received correct challenge request');
             $c->render(text => $qp->param('hub.challenge'));
-         } ## end if (($qp->param('hub.mode'...)))
+         }
          else {
             $log->error('GET request not accepted');
             $c->rendered(403);

@@ -12,8 +12,8 @@ Bot::ChatBots::Messenger::WebHook - WebHook for Bot::ChatBots::Messenger
    plugin 'Bot::ChatBots::Messenger',
       helper_name => 'messenger', # default is chatbots.messenger
       instances => [
-         WebHook => [
-            path => '/messenger/yadda-yadda-yadda',
+         [
+            WebHook => path => '/messenger/yadda-yadda-yadda',
             processor => \&process,
             verify_token => 'yadda-yadda-yadda',
          ]
