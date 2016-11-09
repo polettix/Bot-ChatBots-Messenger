@@ -44,7 +44,8 @@ sub install_get_route {
          my $hvt   = $qp->param('hub.verify_token') // '';
          if (($hmode eq 'subscribe') && ($hvt eq $self->verify_token)) {
             $log->info('received correct challenge request');
-            $c->render(text => $qp->param('hub.challenge'));
+            my $challenge = $qp->param('hub.challenge') // '';
+            $c->render(text => $challenge);
          }
          else {
             $log->error('GET request not accepted');
