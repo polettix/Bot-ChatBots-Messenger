@@ -67,7 +67,7 @@ sub normalize_record {
 
    $record->{sender} = $record->{update}{sender};
 
-   my $chan = $record->{channel} = {%{$record->{update}{recipient}}};
+   my $chan = $record->{channel} = {%{$record->{update}{sender}}};
    $chan->{fqid} = $chan->{id};
 
    return $record;
