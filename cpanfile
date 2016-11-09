@@ -1,5 +1,6 @@
 requires 'perl',             '5.010';
 requires 'Bot::ChatBots',    '0.001010';
+requires 'Moo',              '2.002005';
 requires 'namespace::clean', '0.27';
 requires 'Mojolicious',      '7.10';
 requires 'IO::Socket::SSL',  '2.038';

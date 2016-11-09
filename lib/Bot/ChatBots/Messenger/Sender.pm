@@ -34,7 +34,8 @@ has _url => (
 
 sub send_message {
    my ($self, $message) = splice @_, 0, 2;
-   ouch 500, 'send_message: too many input arguments' if @_ > 2;
+   ouch 500, 'no output to send' unless defined $message;
+   ouch 500, 'too many input arguments' if @_ > 2;
 
    my ($record, @callback);
    for (@_) {
