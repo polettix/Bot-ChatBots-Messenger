@@ -45,8 +45,9 @@ lives_ok {
    );
 } ## end lives_ok
 'send complete, regular message lives';
-
 is scalar(@fuas), 1, '1 post sent';
+
+my @ua_args = @{$fuas[0]};
 is_deeply $fuas[0],
   [
    'http://www.example.com/the/api?access_token=whatever',
@@ -60,7 +61,7 @@ is_deeply $fuas[0],
 
 @fuas = ();
 lives_ok {
-   $sender->send_message('hey', {sender => {id => 'you'}});
+   $sender->send_message('hey', record => {channel => {id => 'you'}});
 }
 'send message with update for sender lives';
 

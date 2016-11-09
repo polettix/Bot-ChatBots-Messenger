@@ -39,9 +39,10 @@
       },
       "runtime" : {
          "requires" : {
-            "Bot::ChatBots" : "0.001010",
+            "Bot::ChatBots" : "0.001011",
             "IO::Socket::SSL" : "2.038",
             "Mojolicious" : "7.10",
+            "Moo" : "2.002005",
             "namespace::clean" : "0.27",
             "perl" : "5.010"
          }

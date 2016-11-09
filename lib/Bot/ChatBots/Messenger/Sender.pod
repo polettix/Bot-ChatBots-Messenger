@@ -65,10 +65,7 @@ composing this role.
 =head2 B<< send_message >>
 
    $obj->send_message($message); # OR
-   $obj->send_message($message, \%record);             # OR
-   $obj->send_message($message, \&callback);           # OR
-   $obj->send_message($message, \%record, \&callback); # OR
-   $obj->send_message($message, \&callback, \%record);
+   $obj->send_message($message, \%args);
 
 Do actual sending of a message. This method leverages
 L<Bot::ChatBots::Role::Sender/ua_request> L</ua_request> to do the actual
@@ -91,8 +88,8 @@ the following algorithm:
 
 =item *
 
-if a C<\%record> is provided, then the C<< $record{sender}{id} >> is taken
-from it;
+if a C<$args{record}> is provided, then the C<< $args{record}{channel}{id}
+>> is taken from it;
 
 =item *
 
@@ -106,9 +103,9 @@ otherwise an exception is thrown (L<Ouch> with code 500).
 
 =back
 
-You can also pass a C<\&callback> sub reference. This will be passed over
-to the user agent, most probably the L<Mojo::UserAgent> object that is
-provided by L<Bot::ChatBots::Role::Sender>.
+You can also pass a C<$args{callback}> sub reference. This will be passed
+over to the user agent, most probably the L<Mojo::UserAgent> object that
+is provided by L<Bot::ChatBots::Role::Sender>.
 
 =head1 SEE ALSO
 

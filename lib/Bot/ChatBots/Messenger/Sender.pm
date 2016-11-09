@@ -33,31 +33,17 @@ has _url => (
 );
 
 sub send_message {
-   my ($self, $message) = splice @_, 0, 2;
+   my ($self, $message, %args) = @_;
    ouch 500, 'no output to send' unless defined $message;
-   ouch 500, 'too many input arguments' if @_ > 2;
-
-   my ($record, @callback);
-   for (@_) {
-      next unless defined $_;
-      if (ref($_) eq 'CODE') {
-         ouch 500, 'cannot set multiple callbacks' if @callback > 0;
-         push @callback, $_;
-      }
-      else {
-         ouch 500, 'cannot set multiple input records' if defined $record;
-         $record = $_;
-      }
-   }
 
    # message normalization
    $message = {message => {text => $message}} unless ref $message;
    if (! exists $message->{recipient}) {
-      if (defined $record) { # take from $record
-         $message->{recipient} = {id => $record->{sender}{id}};
+      if (defined $args{record}) { # take from record
+         $message->{recipient}{id} = $args{record}{channel}{id};
       }
       elsif ($self->has_recipient) {
-         $message->{recipient} = {id => $self->recipient};
+         $message->{recipient}{id} = $self->recipient;
       }
       else { # no more ways to figure it out
          ouch 500, 'no recipient for message';
@@ -65,10 +51,14 @@ sub send_message {
    }
 
    return $self->ua_request(
-      post => $self->_url,
-      {Accept => 'application/json'},
-      json => $message,
-      @callback
+      'post',
+      %args,
+      ua_args => [
+         $self->_url,
+         {Accept => 'application/json'},
+         json => $message,
+         ($args{callback} ? $args{callback} : ()),
+      ],
    );
 } ## end sub send_message
 
