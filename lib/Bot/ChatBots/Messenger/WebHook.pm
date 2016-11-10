@@ -10,6 +10,7 @@ use Data::Dumper;
 use Moo;
 use namespace::clean;
 
+with 'Bot::ChatBots::Role::Source';
 with 'Bot::ChatBots::Role::WebHook';
 
 has no_routes => (
