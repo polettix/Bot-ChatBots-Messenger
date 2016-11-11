@@ -1,2 +1,4 @@
 {{$NEXT}}
-   - first CPAN developer release
+
+0.002  2016-11-11 23:22:11 CET
+   - first release on CPAN (CPAN Testers seems out these days...)

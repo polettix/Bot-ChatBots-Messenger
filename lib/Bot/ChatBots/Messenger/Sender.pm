@@ -1,7 +1,7 @@
 package Bot::ChatBots::Messenger::Sender;
 use strict;
 use warnings;
-{ our $VERSION = '0.001010'; }
+{ our $VERSION = '0.002'; }
 
 use Ouch;
 use Log::Any qw< $log >;
