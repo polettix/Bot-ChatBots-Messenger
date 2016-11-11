@@ -11,6 +11,7 @@ use Moo;
 use namespace::clean;
 
 with 'Bot::ChatBots::Role::Sender';
+with 'Bot::ChatBots::Role::UserAgent';
 
 has token => (
    is       => 'ro',
