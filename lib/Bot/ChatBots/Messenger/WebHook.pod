@@ -33,8 +33,8 @@ Facebook Messenger webhooks for a chatbot.
 
 =head1 ACCESSORS
 
-This module inherits from L<Bot::ChatBots::WebHook>. The following
-accessors are added:
+This module consumes role L<Bot::ChatBots::Role::WebHook>, inheriting all
+the accessors. The accessors in the following subsections are added.
 
 =head2 B<< no_routes >>
 
@@ -51,8 +51,8 @@ upon calling L</install_get_route>.
 
 =head1 METHODS
 
-This module inherits from L<Bot::ChatBots::WebHook> and implements or
-overrides the following methods:
+This module consumes role L<Bot::ChatBots::Role::WebHook> and implements
+or overrides the methods in the following subsections.
 
 =head2 B<< BUILD >>
 

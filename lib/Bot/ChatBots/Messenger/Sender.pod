@@ -40,8 +40,22 @@ This is a sender for Facebook Messenger.
 
 =head1 ACCESSORS
 
-The following methods have a same-named option that can be passed to the
-constructor.
+This class consumes the following roles (inheriting all its accessors):
+
+=over
+
+=item *
+
+L<Bot::ChatBots::Role::Sender>
+
+=item *
+
+L<Bot::ChatBots::Role::UserAgent>
+
+=back
+
+The following additional accessors have a same-named option that can be passed
+to the constructor.
 
 =head2 B<< token >>
 
@@ -58,13 +72,27 @@ L<https://graph.facebook.com/v2.6/me/messages>.
 
 =head1 METHODS
 
+This class consumes the following roles (inheriting all its methods):
+
+=over
+
+=item *
+
+L<Bot::ChatBots::Role::Sender>
+
+=item *
+
+L<Bot::ChatBots::Role::UserAgent>
+
+=back
+
 It should be safe to override the following methods in your classes
 composing this role.
-
 
 =head2 B<< send_message >>
 
    $obj->send_message($message); # OR
+   $obj->send_message($message, %args); # OR
    $obj->send_message($message, \%args);
 
 Do actual sending of a message. This method leverages
@@ -109,8 +137,8 @@ is provided by L<Bot::ChatBots::Role::Sender>.
 
 =head1 SEE ALSO
 
-L<Bot::ChatBots>, L<Bot::ChatBots::Telegram::Sender> and
-L<Bot::ChatBots::Messenger::Sender>.
+L<Bot::ChatBots>, L<Bot::ChatBots::Role::Sender> and
+L<Bot::ChatBots::Role::UserAgent>.
 
 =head1 AUTHOR
 
