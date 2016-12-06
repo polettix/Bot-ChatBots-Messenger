@@ -15,21 +15,21 @@ DISTRIBUTIONS
       perl 5.008001
       strict 0
       warnings 0
-  Bot-ChatBots-0.001009
-    pathname: L/LO/LOCAL/Bot-ChatBots-0.001009.tar.gz
+  Bot-ChatBots-0.006
+    pathname: P/PO/POLETTIX/Bot-ChatBots-0.006.tar.gz
     provides:
-      Bot::ChatBots 0.001009
-      Bot::ChatBots::Auth 0.001009
-      Bot::ChatBots::Base 0.001009
-      Bot::ChatBots::Guard 0.001009
-      Bot::ChatBots::MojoPlugin 0.001009
-      Bot::ChatBots::Role::Sender 0.001009
-      Bot::ChatBots::Role::WebHook 0.001009
-      Bot::ChatBots::Utils 0.001009
-      Bot::ChatBots::Weak 0.001009
+      Bot::ChatBots 0.006
+      Bot::ChatBots::Auth 0.006
+      Bot::ChatBots::MojoPlugin 0.006
+      Bot::ChatBots::Role::Processor 0.006
+      Bot::ChatBots::Role::Sender 0.006
+      Bot::ChatBots::Role::Source 0.006
+      Bot::ChatBots::Role::UserAgent 0.006
+      Bot::ChatBots::Role::WebHook 0.006
+      Bot::ChatBots::Utils 0.006
+      Bot::ChatBots::Weak 0.006
     requirements:
       Log::Any 1.042
-      Mo 0.040
       Module::Build::Tiny 0.034
       Module::Runtime 0.014
       Mojolicious 7.10
@@ -200,6 +200,22 @@ DISTRIBUTIONS
       IO::Socket 0
       Socket 1.97
       Test::More 0.88
+  IO-Socket-SSL-2.039
+    pathname: S/SU/SULLR/IO-Socket-SSL-2.039.tar.gz
+    provides:
+      IO::Socket::SSL 2.039
+      IO::Socket::SSL::Intercept 2.014
+      IO::Socket::SSL::OCSP_Cache 2.039
+      IO::Socket::SSL::OCSP_Resolver 2.039
+      IO::Socket::SSL::PublicSuffix undef
+      IO::Socket::SSL::SSL_Context 2.039
+      IO::Socket::SSL::SSL_HANDLE 2.039
+      IO::Socket::SSL::Session_Cache 2.039
+      IO::Socket::SSL::Utils 2.014
+    requirements:
+      ExtUtils::MakeMaker 0
+      Net::SSLeay 1.46
+      Scalar::Util 0
   JSON-PP-2.27400
     pathname: M/MA/MAKAMAKA/JSON-PP-2.27400.tar.gz
     provides:
@@ -534,6 +550,16 @@ DISTRIBUTIONS
       Role::Tiny 2.000004
       Scalar::Util 0
       perl 5.006
+  Net-SSLeay-1.78
+    pathname: M/MI/MIKEM/Net-SSLeay-1.78.tar.gz
+    provides:
+      Net::SSLeay 1.78
+      Net::SSLeay::Handle 0.61
+    requirements:
+      ExtUtils::MakeMaker 6.36
+      MIME::Base64 0
+      Test::More 0.60_01
+      perl 5.005
   Ouch-0.0410
     pathname: R/RI/RIZEN/Ouch-0.0410.tar.gz
     provides:
